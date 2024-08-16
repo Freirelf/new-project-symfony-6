@@ -1,0 +1,15 @@
+services:
+###> doctrine/doctrine-bundle ###
+  database:
+    image: mysql:8.0.30
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app-symfony6
+    volumes:
+      - mysql-data:/var/lib/mysql
+###< doctrine/doctrine-bundle ###
+volumes:
+  mysql-data:
+    # driver: local
