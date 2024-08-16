@@ -11,18 +11,35 @@
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <p>Email: {{ app.user.email }}</p>
     {% endif %}
+    
+    <main class="form-signin w-100 m-auto">
+        <div class="row text-center vcs-iniitalized">
+            <div class="col-4 m-auto">
+                <form class="form-sigin w-100" action="{{ path('app_login') }}" method="post">
+                    <img class="mb-4" src="https://avatars.githubusercontent.com/u/143937?s=200&v=4" alt="" width="72" height="57">
+                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-    <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required>
+                    <div class="form-floating">
+                    <input type="email" class="form-control" id="username" name="_username" value="{{ last_username }}" required placeholder="name@example.com">
+                    <label for="username">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                    <input type="password" class="form-control" id="password" name="_password" required placeholder="Password">
+                    <label for="password">Password</label>
+                    </div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" required>
+                    <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                    <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
+                </form>
+            </div>    
+        </div>
+    </main>
 
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"> #}
 
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <button type="submit">login</button>
-    </form>
 {% endblock %}
