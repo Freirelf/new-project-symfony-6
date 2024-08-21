@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NewsController!{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card_body p-3">
+                  {{ include('news/_form.html.twig')}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

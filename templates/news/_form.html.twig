@@ -1,0 +1,18 @@
+{{ form_start(form) }} 
+<div class="mb-3">
+    <label class="form-label" for="{{ form.title.vars.id}}">Título da Notícia</label>
+    {{ form_widget(form.title, {'attr':{'class':'form-control'} }) }}
+</div>
+
+<div class="mb-3">
+    <label class="form-label" for="{{ form.description.vars.id}}">Descrição da Notícia</label>
+    {{ form_widget(form.description, {'attr':{'class':'form-control'} }) }}
+</div>
+
+<div class="mb-3">
+  <label class="form-label" for="{{ form.font.vars.id}}">Fonte da Notícia</label>
+  {{ form_widget(form.font, {'attr':{'class':'form-control'} }) }}
+</div>
+<button class="btn btn-primary">Salvar</button>
+<a class="btn btn-outline-primary" href="{{ path('app_news')}}">Voltar</a>   
+{{ form_end(form) }} 

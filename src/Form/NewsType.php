@@ -14,6 +14,7 @@ class NewsType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
+            ->add('font')
         ;
     }
 

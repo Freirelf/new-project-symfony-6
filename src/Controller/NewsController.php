@@ -38,4 +38,32 @@ class NewsController extends AbstractController
             'form' => $form
         ]);
     }
+
+    #[Route('/admin/news/new', name: 'app_news_new')]
+    public function new(Request $request, NewsRepository $newsRepository)
+    {   
+        $news = new News();
+        $form = $this->createForm( NewsType::class, $news);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newsRepository->save($news, true);
+            $this->addFlash('success', 'news.edit.success');
+            return $this->redirectToRoute('app_news');
+        }
+        return $this->render('news/new.html.twig', [
+            'activeMenu' => 'news',
+            'news' => $news,
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/admin/news/{id}/delete', name: 'app_news_delete', methods: ['POST'])]
+    public function delete(Request $request, News $news, NewsRepository $newsRepository)
+    {   
+        if ($this->isCsrfTokenValid('delete'.$news->getId(), $request->request->get('_token'))) {
+            $newsRepository->remove($news, true);
+            $this->addFlash('success', 'news.delete.success');
+        }
+        return $this->redirectToRoute('app_news');
+    }
 }

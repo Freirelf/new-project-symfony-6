@@ -8,19 +8,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card_body p-3">
-                   {{ form_start(form) }} 
-                    <div class="mb-3">
-                        <label class="form-label" for="{{ form.title.vars.id}}">Título da Notícia</label>
-                        {{ form_widget(form.title, {'attr':{'class':'form-control'} }) }}
-                    </div>
+                   {{ include('news/_form.html.twig')}}
 
-                    <div class="mb-3">
-                        <label class="form-label" for="{{ form.description.vars.id}}">Descrição da Notícia</label>
-                        {{ form_widget(form.description, {'attr':{'class':'form-control'} }) }}
-                    </div>
-                    <button class="btn btn-primary">Salvar</button>
-                    <a class="btn btn-outline-primary" href="{{ path('app_news')}}">Voltar</a>   
-                   {{ form_end(form) }} 
+                    <form method="post" action="{{ path('app_news_delete', {'id': news.id}) }}" onsubmit=" return confirm('Tem certeza que quer apagar?')">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ news.id )}}"    />
+                        <button class="btn btn-danger mt-3">Apagar</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -25,6 +25,15 @@ class NewsRepository extends ServiceEntityRepository
         }
     }
 
+    public function remove(News $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     //    /**
     //     * @return News[] Returns an array of News objects
     //     */
