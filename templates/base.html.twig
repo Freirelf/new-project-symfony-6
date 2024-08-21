@@ -55,21 +55,21 @@
                         <hr>
                         <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active" aria-current="page">
+                            <a href="{{path('app_home')}}" class="nav-link" aria-current="page">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
                             Home
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="{{path('app_admin')}}" class="nav-link text-white {% if activeMenu is defined and activeMenu == 'dashboard' %}active{% endif %}">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
                             Dashboard
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="{{path('app_news')}}" class="nav-link text-white {% if activeMenu is defined and activeMenu == 'news' %}active{% endif %}">
                             <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-                            Orders
+                            Notícias
                             </a>
                         </li>
                         <li>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
 
-                <div class="col-auto">
+                <div class="col-8">
                     {% block body %}
                         Cole seu conteúdo aqui
                     {% endblock %}
