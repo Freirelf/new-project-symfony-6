@@ -5,17 +5,18 @@ namespace App\Controller;
 use App\Entity\News;
 use App\Form\NewsType;
 use App\Repository\NewsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Translation\LocaleSwitcher;
 
-class NewsController extends AbstractController
+class NewsController extends BaseController
 {
     #[Route('/admin/news', name: 'app_news')]
     public function index(NewsRepository $newsRepository): Response
-    {
+    {   
         $entities = $newsRepository->findAll();
         return $this->render('news/index.html.twig', [
             'entities' => $entities,
@@ -77,7 +78,7 @@ class NewsController extends AbstractController
 
             $file = $form['image']->getData();
             if ($file) {
-
+ 
                 $someNewFilename = uniqid();
 
                 $extension = $file->guessExtension();
