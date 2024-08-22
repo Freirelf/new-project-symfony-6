@@ -3,9 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Translation\LocaleSwitcher;
 
 class BaseController extends AbstractController
@@ -15,7 +13,7 @@ class BaseController extends AbstractController
     public function __construct(private LocaleSwitcher $localeSwitcher) 
     {
         $this->session = new Session();
-        $this->localeSwitcher->setLocale($this->session->get('idioma'));
+        $this->localeSwitcher->setLocale($this->session->get('idioma', 'en'));
 
     }
 }
