@@ -13,6 +13,7 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
+              <th scope="col">Imagem</th>
               <th scope="col">Título</th>
               <th scope="col">Descrição</th>
               <th scope="col">Fonte</th>
@@ -23,6 +24,11 @@
         {% for entity in entities %}
             <tr>
               <td>{{entity.id}}</td>
+              <td>
+                {% if entity.image is defined and entity.image is not empty %}
+                  <img src="/image/{{entity.image}}" width="100" />
+                {% endif %}
+              </td>
               <td>{{entity.title}}</td>
               <td>{{entity.description}}</td>
               <td>{{entity.font}}</td>

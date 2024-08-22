@@ -23,6 +23,9 @@ class News
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $font = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class News
     public function setFont(?string $font): static
     {
         $this->font = $font;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
